@@ -1,17 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './css/index.css';
+import * as serviceWorker from './serviceWorker';
+
+import { App } from './components/app/App';
+import { HashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <Provider store={store}>
+    <HashRouter>
+      <App/>
+    </HashRouter>
+  </Provider>,
+	document.getElementById('root')
+	);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+serviceWorker.unregister();
+
+export const ucFL = (value) => {
+  let letterUpper = '';
+  const findIndexDash = value.indexOf('-');
+  
+  if (findIndexDash === -1) {
+    letterUpper = value.split('').shift().toUpperCase().concat(value.slice(1, value.length));
+  } else {
+    const sliceFirstLettersOfDash = value.slice(findIndexDash + 1);
+    letterUpper = value.split('').shift().toUpperCase().concat(value.slice(1, findIndexDash)) + '-' + sliceFirstLettersOfDash.split('').shift().toUpperCase().concat(sliceFirstLettersOfDash.slice(1, sliceFirstLettersOfDash.length))
+  } 
+  return letterUpper;
+}
+
+export const numSpc = (value) => {
+	let toSpace;
+	const strVal = value.toString();
+	if (strVal.length > 3) {
+		toSpace = strVal.split('').slice(0, strVal.length - 3).join('') + ' ' + strVal.split('').splice(-3, 3).join('');
+	} else {
+		toSpace = value;
+	}
+	return toSpace;
+}

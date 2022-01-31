@@ -1,0 +1,1366 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+* {
+	outline: 1px solid transparent;
+}
+
+button,
+button:focus {
+	outline: 1px solid transparent;
+}
+
+/* -----------------------------------------------------------------header */
+
+.nav-bar {
+	margin-top: 32px;
+	position: absolute;
+}
+
+.nav-bar-temporary {
+	margin-top: 90px;
+	position: fixed;
+	z-index: 1;
+}
+
+.itemTemporary {
+	background-color: #928F94;
+	margin-left: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	opacity: 0.9;
+}
+
+.header-section {
+	background-image: url(../images/image_logo1.png);
+	background-size: cover;
+	background-color: rgba(155, 105, 9, 1);
+}
+
+.header-section-two-page {
+	background-color: rgba(155, 105, 9, 1);
+}
+
+.header-section-three-page {
+	padding-top: 250px;
+	background-image: url(../images/image_logo2.png);
+	background-size: cover;
+	background-color: rgba(146, 143, 148, 1);
+	height: 596px;
+}
+
+.section-header-order {
+	background-color: rgba(41, 41, 41, 0.69);
+}
+
+logo {
+	height: 64px;
+}
+
+.logo__text {
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:hover {
+	text-decoration: none;
+	color: grey;
+}
+
+.nav__item {
+	text-decoration: none;
+	color: white;
+}
+
+.nav__item:hover {
+	cursor: pointer;
+	text-decoration: none;
+	color: grey;
+}
+
+/* -------------------------------------------------------------------section-header */
+
+.header-logo {
+	background-color: rgba(0, 0, 0, 0.6);
+	position: absolute;
+}
+
+.section-header {
+	padding-top: 253px;
+	height: 906px;
+}
+
+.section-header-text {
+	margin: auto;
+}
+
+.display-4 {
+	font-size: 2.5rem;
+}
+
+.section-header-form {
+	height: 506px;
+	background-color: rgba(41, 41, 41, 0.8);
+}
+
+.form-group {
+	position: relative;
+}
+
+.form-group .glyphicon {
+	position: absolute;
+	right: 0px;
+	color: lightgrey;
+	font-size: 20px;
+}
+
+.table-borderless {
+	background-color: #FFFFFF;
+	border-radius: 2px;
+}
+
+.header-bottom-line {
+	height: 8px;
+	background: rgba(255, 168, 0, 1);
+}
+
+.input-typeahead {
+	width: 450px;
+}
+
+/* ------------------------------------------------------------------section-about-us */
+
+.about-us p.col-lg-2 {
+	margin-top: 144px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 36px;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+.about-us-vertical-line {
+	width: 9px;
+	height: 231px;
+	background: #FFA800;
+}
+
+/* -----------------------------------------------------------------section-how-it-works */
+
+.how-it-works {
+	background-image: url(../images/mask_group.png);
+	background-size: cover;
+	color: #FFFFFF;
+}
+
+.how-it-works .col-lg-12 {
+	margin-top: 69px;
+}
+
+.how-it-works .col-lg-9 {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 30px;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+.how-it-works .btn {
+	color: #FFFFFF;
+	border-color: #FFFFFF;
+}
+
+.how-it-works .icon1 {
+	background-image: url(../images/group_icon1.png);
+	height: 162px;
+	width: 162px;
+}
+
+.how-it-works .icon2 {
+	background-image: url(../images/group_icon2.png);
+	height: 162px;
+	width: 162px;
+}
+
+.how-it-works .icon3 {
+	background-image: url(../images/group_icon3.png);
+	height: 162px;
+	width: 162px;
+}
+
+
+/* --------------------------------------------------------------progress-line-cost */
+
+.progress-line-cost {
+	background: rgba(62, 60, 65, 1);
+}
+
+.progress-line-cost-button {
+	padding: 0;
+	background: rgba(62, 60, 65, 1);
+	color: white;
+}
+
+.progress-line-cost-button.completed {
+	background: #FFA800;
+}
+
+.progress-line-cost-number {
+	border: 2px solid #FFFFFF;
+	border-radius: 15px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+.progress-line-cost-text {
+	margin-left: 2%;
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+
+
+/* --------------------------------------------------------------section-reviews */
+
+.review-head {
+	margin-top: 152px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 36px;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+.review-icon1 {
+	background-image: url(../images/review_icon1.png);
+	height: 206px;
+	width: 206px;
+}
+
+.review-icon2 {
+	background-image: url(../images/review_icon2.png);
+	height: 200px;
+	width: 200px;
+}
+
+/*-----------------------------------------------------------------SectionSearchTickets*/
+
+.custom-sort-train {
+	border: none;
+	background-color: rgb(251, 249, 249);
+	font-weight: bold;
+	outline: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+.custom-sort-train:hover {
+	cursor: pointer;
+}
+
+.custom-sort-train::-ms-expand {
+	display: none;
+}
+
+.ticketPriceAndSeats {
+	border-left: solid #ececec 2px;
+}
+
+.filter-choice-tickets {
+	border: none;
+	background-color: rgb(251, 249, 249);
+	outline: none;
+}
+
+button.filter-choice-tickets:focus,
+button.filter-choice-tickets:active {
+	outline: 1px solid transparent;
+}
+
+
+.filter-choice-tickets:hover {
+	font-weight: bold;
+	color: gray;
+	cursor: pointer;
+}
+
+.filter-choice-tickets-active {
+	font-weight: bold;
+	border: none;
+	background-color: rgb(251, 249, 249);
+	outline: none;
+
+}
+
+button.filter-choice-tickets-active:focus,
+button.filter-choice-tickets-active:active {
+	outline: 1px solid transparent;
+}
+
+.custom-range-cost {
+	font-size: 22px;
+}
+
+.custom-range-cost-check {
+	cursor: pointer;
+}
+
+
+
+/* ---------------------------------------------------------------orderConfirmed */
+
+footer {
+	background-color: rgba(45, 43, 47, 1);
+	color: white;
+}
+
+.icon__phone {
+	width: 30px;
+	height: 30px;
+	background-image: url(../images/icon_footer_phone.png);
+}
+
+.icon__message {
+	width: 30px;
+	height: 24.55px;
+	background-image: url(../images/icon_footer_message.png);
+}
+
+.icon__skype {
+	width: 30px;
+	height: 30px;
+	background-image: url(../images/icon_footer_skype.png);
+}
+
+.icon__location {
+	width: 21px;
+	height: 30px;
+	background-image: url(../images/icon_footer_location.png);
+}
+
+.footer-button {
+	color: rgba(229, 229, 229, 1);
+}
+
+.icons-subscription-youtube {
+	width: 37.69px;
+	height: 30px;
+	background-image: url(../images/icon_footer_youtube.png);
+	cursor: pointer;
+}
+
+.icons-subscription-youtube:hover {
+	background: url(../images/icon_footer_youtube_checked.png);
+	width: 37.69px;
+	height: 30px;
+}
+
+.icons-subscription-in {
+	width: 32px;
+	height: 30px;
+	background-image: url(../images/icon_footer_in.png);
+	cursor: pointer;
+}
+
+.icons-subscription-in:hover {
+	width: 32px;
+	height: 30px;
+	background-image: url(../images/icon_footer_in_checked.png);
+}
+
+.icons-subscription-google-plus {
+	width: 47px;
+	height: 30px;
+	background-image: url(../images/icon_footer_google_plus.png);
+	cursor: pointer;
+}
+
+.icons-subscription-google-plus:hover {
+	width: 47px;
+	height: 30px;
+	background-image: url(../images/icon_footer_google_plus_checked.png);
+}
+
+.icons-subscription-facebook {
+	width: 14px;
+	height: 30px;
+	background-image: url(../images/icon_footer_facebook.png);
+	cursor: pointer;
+}
+
+.icons-subscription-facebook:hover {
+	width: 14px;
+	height: 30px;
+	background-image: url(../images/icon_footer_facebook_checked.png);
+}
+
+.icons-subscription-twitter {
+	width: 37px;
+	height: 30px;
+	background-image: url(../images/icon_footer_twitter.png);
+	cursor: pointer;
+}
+
+.icons-subscription-twitter:hover {
+	width: 37px;
+	height: 30px;
+	background-image: url(../images/icon_footer_twitter_checked.png);
+}
+
+.footer-bottom {
+	background-color: rgba(45, 43, 47, 1);
+	height: 96px;
+}
+
+.icon-bottom:hover {
+	cursor: pointer;
+}
+
+
+/* -------------------------------------------------------------three-page */
+
+.tickets-search-param {
+	color: white;
+}
+
+.tickets-search-window {
+	background-color: rgb(251, 249, 249);
+}
+
+.preloader {
+	position: relative;
+	height: 400px;
+	background-color: rgba(62, 60, 65, 1);
+}
+
+.preloader-text {
+	position: absolute;
+	margin-top: 150px;
+}
+
+.icon-coupe {
+	width: 17px;
+	height: 17px;
+}
+
+.icon-wifi-rocket-cup {
+	width: 92px;
+	height: 20px;
+}
+
+.tickets-search-result {
+	color: black;
+}
+
+.select-tickets-search-number-train {
+	background-color: #E4E0E9;
+}
+
+.result-search-of-tickets {
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.result-search-of-tickets p {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 5px;
+}
+
+.quantity-places-orange {
+	color: rgba(255, 168, 0, 1);
+	font-size: 18px;
+}
+
+.last-tickets {
+	color: black;
+	margin-right: 15px;
+}
+
+.last-ticket-result {
+	font-size: 12px;
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(62, 60, 65, 0.25);
+}
+
+.last-ticket-price {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 2em;
+	line-height: 12px;
+	color: #FFA800;
+}
+
+.page-search-select-number {
+	color: black;
+	width: 55px;
+	height: 55px;
+	background: #FFFFFF;
+	border: 2px solid #C4C4C4;
+	border-radius: 5px;
+	margin-left: 15px;
+}
+
+.page-search-select-number:hover {
+	border: 2px solid #FFA800;
+	border-radius: 5px;
+}
+
+.page-search-select-number:visited {
+	background: #FFA800;
+}
+
+.page-search-select-number:active {
+	background: #FFA800;
+}
+
+.page-search-select-number+.active {
+	background: #FFA800;
+}
+
+.react-compound-slider {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+
+
+
+
+
+
+/* ------------------------------------------------four page */
+
+.custom-control-input+label {
+	cursor: pointer;
+}
+
+.custom-control-label::before {
+	width: 30px !important;
+	left: calc(-2.25rem + .5px)!important;
+}
+
+.custom-control-label::after {
+	top: calc(.17rem + .25px)!important;
+	left: calc(-2.25rem + .5px)!important;
+	width: calc(1.2rem - 0.5px)!important;
+	height: calc(1.2rem - 0.5px)!important;
+	border-radius: .5rem!important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+	border-color: #FCDC9D!important;
+    background-color: #FFA800!important;
+}
+
+.choice-of-place {
+	color: black;
+}
+
+.choice-of-place-there {
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.choice-ticket-train-there {
+	background: #F7F6F6;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.quantity-tickets-check-left {
+	background: #F7F6F6;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: #000000;
+}
+
+.quantity-tickets-check-left:hover {
+	border: 1px solid #FFA800;
+	padding: 0 14px;
+}
+
+.quantity-tickets-check-center {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	color: #928F94;
+}
+
+.quantity-tickets-check-center:hover {
+	border: 1px solid #FFA800;
+	padding: 0 14px;
+}
+
+.quantity-tickets-check-right:hover {
+	border: 1px solid #FFA800;
+	padding: 0 14px;
+}
+
+.horizontal-line-gray {
+	width: auto;
+	height: 0px;
+	border: 1px solid #C4C4C4;
+}
+
+.choice-type-vagon-button button {
+	border: 0px;
+}
+
+.choice-type-vagon-button p {
+	font-weight: bold;
+	margin-top: 10px;
+	color: rgb(177, 177, 177);
+}
+
+.choice-type-vagon-button div:hover {
+	cursor: pointer;
+}
+
+.choice-type-vagon-button div:hover p {
+	background-color: rgba(255, 255, 255, 1);
+	font-weight: bold;
+	color: rgba(255, 168, 0, 1);
+}
+
+.icon-type-vagon-seat {
+	display: inline-block;
+	background: url(../images/icon_type_vagon_seat.png);
+	width: 31px;
+	height: 50px;
+}
+
+.choice-type-vagon-button div:hover .icon-type-vagon-seat {
+	background: url(../images/icon_type_vagon_seat_checked.png);
+	width: 31px;
+	height: 50px;
+}
+
+.icon-type-vagon-reserved-seat {
+	display: inline-block;
+	background: url(../images/icon_type_vagon_reserved_seat.png);
+	width: 50px;
+	height: 50px;
+}
+
+.choice-type-vagon-button div:hover .icon-type-vagon-reserved-seat {
+	background: url(../images/icon_type_vagon_reserved_seat_checked.png);
+	width: 50px;
+	height: 50px;
+}
+
+.icon-type-vagon-coupe {
+	display: inline-block;
+	background: url(../images/icon_type_vagon_coupe.png);
+	width: 50px;
+	height: 50px;
+}
+
+.choice-type-vagon-button div:hover .icon-type-vagon-coupe {
+	background: url(../images/icon_type_vagon_coupe_checked.png);
+	width: 50px;
+	height: 50px;
+}
+
+.icon-type-vagon-luxury {
+	display: inline-block;
+	background: url(../images/icon_type_vagon_luxury.png);
+	width: 56.45px;
+	height: 50px;
+}
+
+.choice-type-vagon-button div:hover .icon-type-vagon-luxury {
+	background: url(../images/icon_type_vagon_luxury_checked.png);
+	width: 56.45px;
+	height: 50px;
+}
+
+.number-of-vagon {
+	font-size: 12px;
+	height: 37px;
+	padding: 10px;
+	background: rgba(255, 168, 0, 0.44);
+}
+
+.number-of-vagon-checked-yellow {
+	padding: 25px 25px 10px 10px;
+	background: rgba(255, 168, 0, 0.44);
+}
+
+.number-of-vagon-checked-yellow-number {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 64px;
+	line-height: 28px;
+
+}
+
+.number-of-vagon-checked-yellow-text {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 18px;
+	text-align: center;
+}
+
+.number-of-people-online {
+	background-color: rgba(243, 243, 243, 1);
+	padding: 15px;
+	width: 199px;
+	height: 72px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vagon-places-container {
+	position: relative;
+	overflow: auto;
+	height: 140px;
+	width: 760px;
+}
+
+.image-vagon-places {
+	position: absolute;
+	margin-left: 15px;
+	width: 740px;
+}
+
+
+.seats-index {
+	padding: 0;
+	border: none;
+	font: inherit;
+	color: inherit;
+	background-color: rgb(226, 226, 226);
+}
+
+.seats-index.true {
+	color: white;
+	background-color: rgb(144, 144, 144);
+}
+
+.seats-index.false:hover {
+	background-color: rgb(167, 167, 167);
+}
+
+.seats-index.false:active {
+	border: solid 1px rgb(218, 185, 0);
+}
+
+.seats-index.false.active {
+	background-color: rgb(255, 255, 255);
+	border: 2px solid rgb(245, 211, 18);
+}
+
+.seats-index.false.active:hover {
+	background-color: rgb(255, 255, 255);
+}
+
+.train-fourth-container {
+	position: relative;
+	padding-top: 26px;
+	padding-left: 124px;
+	padding-right: 100px;
+	display: grid;
+	grid-auto-flow: column dense;
+	grid-template-rows: repeat(2, 18px);
+	grid-template-columns: repeat(16, 35px);
+}
+
+.train-fourth-container .seats-index {
+	margin-bottom: 3px;
+	height: 15px;
+	width: 20px;
+	font-size: 13px;
+	font-weight: bold;
+	justify-content: center;
+}
+
+.train-fourth-container .seats-index:nth-child(2n+1) {
+	grid-row-start: 2;
+}
+
+.train-fourth-container .seats-index:nth-child(-n+17) {
+	margin-left: 15px;
+}
+
+.train-fourth-container .seats-index:nth-child(+n+17) {
+	margin-left: 15px;
+}
+
+.train-fourth-container-two {
+	position: relative;
+	margin-top: 11px;
+	padding-left: 124px;
+	padding-right: 100px;
+	padding-bottom: 2px;
+	display: grid;
+	grid-auto-flow: column dense;
+	grid-template-rows: repeat(2, 18px);
+	grid-template-columns: repeat(16, 35px);
+}
+
+.train-fourth-container-two .seats-index {
+	margin-bottom: 3px;
+	display: flex;
+	height: 15px;
+	width: 20px;
+	font-size: 13px;
+	font-weight: bold;
+	justify-content: center;
+}
+
+.train-fourth-container-two .seats-index:nth-child(2n+1) {
+	grid-row-start: 2;
+}
+
+.train-fourth-container-two .seats-index:nth-child(-n+17) {
+	margin-left: 15px;
+}
+
+.train-fourth-container-two .seats-index:nth-child(+n+17) {
+	margin-left: 15px;
+}
+
+.train-third-container {
+	position: relative;
+	padding-top: 23px;
+	padding-left: 122px;
+	padding-right: 85px;
+	display: grid;
+	grid-auto-flow: column dense;
+	grid-template-rows: repeat(2, 25px);
+	grid-template-columns: repeat(16, 36px);
+}
+
+.train-third-container .seats-index {
+	margin-bottom: 1px;
+	height: 24px;
+	width: 22px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.train-third-container .seats-index:nth-child(2n-1) {
+	grid-row-start: 2;
+	justify-self: end;
+	margin-right: 3px;
+}
+
+.train-third-container .seats-index:nth-child(4n) {
+	justify-self: end;
+	margin-right: 3px;
+}
+
+.train-third-container .seats-index:nth-child(4n-6) {
+	justify-self: start;
+}
+
+.train-third-container .seats-index:nth-child(4n+5) {
+	justify-self: start;
+}
+
+.train-third-container .seats-index:nth-child(1) {
+	justify-self: start;
+}
+
+.train-third-container-two {
+	position: relative;
+	padding-top: 18px;
+	padding-left: 122px;
+	padding-right: 85px;
+	padding-bottom: 1px;
+	font-size: 13px;
+	font-weight: bold;
+	display: grid;
+	grid-auto-flow: column dense;
+}
+
+.train-third-container-two .seats-index.two-row {
+	margin-right: 2px;
+	height: 19px;
+	width: 34px;
+}
+
+.train-second-container {
+	position: relative;
+	padding-top: 23px;
+	padding-left: 122px;
+	padding-right: 85px;
+	display: grid;
+	grid-auto-flow: column dense;
+	grid-template-rows: repeat(2, 25px);
+	grid-template-columns: repeat(16, 36px);
+}
+
+.train-second-container .seats-index {
+	margin-bottom: 1px;
+	height: 24px;
+	width: 22px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.train-second-container .seats-index:nth-child(2n-1) {
+	grid-row-start: 2;
+	justify-self: end;
+	margin-right: 3px;
+}
+
+.train-second-container .seats-index:nth-child(4n) {
+	justify-self: end;
+	margin-right: 3px;
+}
+
+.train-second-container .seats-index:nth-child(4n-6) {
+	justify-self: start;
+}
+
+.train-second-container .seats-index:nth-child(4n+5) {
+	justify-self: start;
+}
+
+.train-second-container .seats-index:nth-child(1) {
+	justify-self: start;
+}
+
+.train-second-container-two {
+	padding-bottom: 37px;
+}
+
+.train-first-container {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	padding-top: 23px;
+	padding-left: 119px;
+	padding-right: 100px;
+}
+
+.train-first-container .seats-index {
+	display: flex;
+	height: 47px;
+	width: 22px;
+	font-size: 13px;
+	font-weight: bold;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.train-first-container .seats-index:nth-child(2n-1) {
+	margin-left: 3px;
+}
+
+.train-first-container .seats-index:nth-child(2n+2) {
+	margin-left: 25px;
+}
+
+.train-first-container-two {
+	padding-bottom: 40px;
+}
+
+.number-of-vagon-checked label {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	position: relative;
+}
+
+.icon-vagon-conditioner {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_conditioner.png) no-repeat;
+	cursor: pointer;
+}
+
+.icon-vagon-conditioner[type="checkbox"]:hover {
+	background: url(../images/icon_vagon_conditioner_hover.png) no-repeat;
+}
+
+.icon-vagon-conditioner[type="checkbox"]:checked {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_conditioner_checked.png) no-repeat;
+}
+
+.icon-vagon-wifi[type="checkbox"] {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_wifi.png) no-repeat;
+	cursor: pointer;
+}
+
+.icon-vagon-wifi[type="checkbox"]:hover {
+	background: url(../images/icon_vagon_wifi_hover.png) no-repeat;
+}
+
+.icon-vagon-wifi[type="checkbox"]:checked {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_wifi_checked.png) no-repeat;
+}
+
+.icon-vagon-linens[type="checkbox"] {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_linens.png) no-repeat;
+	cursor: pointer;
+}
+
+.icon-vagon-linens[type="checkbox"]:hover {
+	background: url(../images/icon_vagon_linens_hover.png) no-repeat;
+}
+
+.icon-vagon-linens[type="checkbox"]:checked {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_linens_checked.png) no-repeat;
+}
+
+.icon-vagon-cup[type="checkbox"] {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_cup.png) no-repeat;
+	cursor: pointer;
+}
+
+.icon-vagon-cup[type="checkbox"]:hover {
+	background: url(../images/icon_vagon_cup_hover.png) no-repeat;
+}
+
+.icon-vagon-cup[type="checkbox"]:checked {
+	width: 50px;
+	height: 50px;
+	background: url(../images/icon_vagon_cup_checked.png) no-repeat;
+}
+
+.choice-of-place-back {
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.choice-ticket-train-back {
+	background: #F7F6F6;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+
+/* ----------------------------------------------------- five page */
+
+.trip-details {
+	color: white;
+	font-size: 12px;
+}
+
+.passengers-form-filling {
+	font-family: Roboto;
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.passengers-form-number {
+	background: #F9F9F9;
+}
+
+.passengers-form-button {
+	border: none;
+	width: 100%;
+}
+
+.passengers-form-img:hover {
+	cursor: pointer;
+}
+
+.box-add-passenger {
+	display: flex;
+	color: black;
+	cursor: pointer;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 104px;
+	height: 30px;
+}
+
+.slider-checkbox:before {
+	border-radius: 5px;
+	position: absolute;
+	content: "";
+	height: 28px;
+	width: 50px;
+	background-color: rgba(255, 168, 0, 1);
+	-webkit-transition: .4s;
+	transition: .4s;
+	z-index: -1;
+}
+
+.slider-checkbox {
+	font-weight: bold;
+	border: 1px solid #928F94;
+	border-radius: 5px;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #FFFFFF;
+	-webkit-transition: .4s;
+	transition: .4s;
+	z-index: 1;
+}
+
+input:checked+.slider-checkbox:before {
+	-webkit-transform: translateX(52px);
+	-ms-transform: translateX(52px);
+	transform: translateX(52px);
+}
+
+.form-passport-danger {
+	background-color: rgba(255, 61, 0, 0.38);
+}
+
+.form-passport-ready {
+	background-color: rgba(178, 246, 161, 1);
+}
+
+/* ---------------------------------------------------- eight-page */
+
+.header-section-final-page {
+	background: url(../images/image_logo_final_order.png) no-repeat;
+	background-size: 100% auto;
+}
+
+.header-text-final-order {
+	padding-top: 40%;
+	font-weight: bold;
+	font-size: 60px;
+	line-height: 84px;
+	color: #FFFFFF;
+}
+
+.final-order-window {
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.tickets-icons-window {
+	background: #F4F3F6;
+}
+
+.rate-service-back-main-page {
+	background-color: rgba(255, 168, 0, 0.88);
+}
+
+
+/* ------------------------------------------------------- @media */
+
+
+@media screen and (max-width: 1400px) {
+	.header-section-final-page {
+		background-size: cover;
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	.progress-line-cost-text {
+		margin-left: 2%;
+		margin-top: 40px;
+		font-size: 15px;
+	}
+
+	.vagon-places-container {
+		width: 625px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.page-search-select-number {
+		width: 40px;
+		height: 40px;
+		border: 2px solid #C4C4C4;
+		border-radius: 4px;
+		margin-left: 10px;
+		font-size: 15px;
+	}
+
+	.page-search-select-number img {
+		height: 20px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.vagon-places-container {
+		width: 445px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.choice-type-vagon-button p {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.progress-line-cost-button {
+		height: 50px;
+	}
+
+	.progress-line-cost img {
+		height: 50px;
+	}
+
+	.progress-line-cost-number {
+		border: 1px solid #FFFFFF;
+		border-radius: 15px;
+		padding-left: 4px;
+		padding-right: 5px;
+		margin-top: 18px;
+		margin-bottom: 16px;
+		font-size: 10px;
+	}
+
+	.progress-line-cost-text {
+		margin-top: 20px;
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.vagon-places-container {
+		width: 430px;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.vagon-places-container {
+		width: 420px;
+	}
+}
+
+@media screen and (max-width: 515px) {
+	.vagon-places-container {
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 495px) {
+	.vagon-places-container {
+		width: 380px;
+	}
+}
+
+@media screen and (max-width: 475px) {
+	.vagon-places-container {
+		width: 360px;
+	}
+}
+
+@media screen and (max-width: 455px) {
+	.vagon-places-container {
+		width: 340px;
+	}
+}
+
+@media screen and (max-width: 435px) {
+	.vagon-places-container {
+		width: 320px;
+	}
+}
+
+@media screen and (max-width: 415px) {
+	.vagon-places-container {
+		width: 300px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.progress-line-cost-button {
+		height: 40px;
+	}
+
+	.progress-line-cost img {
+		height: 40px;
+	}
+
+	.progress-line-cost-number {
+		border: 1px solid #FFFFFF;
+		border-radius: 15px;
+		padding-left: 4px;
+		padding-right: 4px;
+		margin-top: 13px;
+		margin-bottom: 12px;
+		font-size: 8px;
+	}
+
+	.progress-line-cost-text {
+		margin-top: 14px;
+		font-size: 8px;
+	}
+
+	.page-search-select-number {
+		width: 20px;
+		height: 20px;
+		border: 1px solid #C4C4C4;
+		border-radius: 3px;
+		margin-left: 10px;
+		font-size: 10px;
+	}
+
+	.page-search-select-number img {
+		height: 15px;
+	}
+}
+
+@media screen and (max-width: 395px) {
+	.vagon-places-container {
+		width: 280px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.vagon-places-container {
+		width: 260px;
+	}
+}
+
+@media screen and (max-width: 355px) {
+	.vagon-places-container {
+		width: 240px;
+	}
+}
+
+@media screen and (max-width: 335px) {
+	.vagon-places-container {
+		width: 220px;
+	}
+}
