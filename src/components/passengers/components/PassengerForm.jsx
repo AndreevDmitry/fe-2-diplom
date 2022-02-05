@@ -5,12 +5,31 @@ import iconPlusSircle from '../../../images/icon_plus_sircle.png';
 
 import { useForm } from 'react-hook-form';
 
+const FormValidationErrors = (props) => {
+	const errors = props.errors;
+	if (Object.keys(errors).length === 0) {    return null;  }
+	console.log(errors)
+	return (
+		<>
+		<div className="border-bottom row pt-4 pb-4 passenger-form-validate-error-block">
+		<img className="passengers-form-img pl-4 mt-auto" src={iconMinusSircle} alt="..."
+			 />
+
+		<h5 className="ml-3"> 
+		    {errors.last_name && errors.last_name.type === "required" && <span>Укажите фамилию</span>}
+			{errors.first_name && errors.first_name.type === "required" && <span>Укажите имя</span>}
+		</h5>
+		<img className="ml-auto mr-5 mt-auto" src={iconCloseX} alt="..." />
+		</div>
+</>
+	)
+}
 
 const Form = (props) => {
 
 	const { register, handleSubmit, formState: { errors }} = useForm();
 
-	const onSubmit = (data) => {
+	const onSubmit = (data, e) => {
 		let newData = { ...data };
 
 		if (data.document_type === "Паспорт") {
@@ -26,6 +45,10 @@ const Form = (props) => {
 		props.setActiveButton();
 	};
 
+	const onError = (errors, e) => {
+		console.log(errors);
+	};
+
 	const documents = (value) => {
 		if (value === "Паспорт") {
 			props.setDocumentTrue();
@@ -37,7 +60,7 @@ const Form = (props) => {
 	return (
 		<>
 			{props.active ?
-				<form className="passengers-form-filling col mt-5 mb-5" onSubmit={handleSubmit(onSubmit)}>
+				<form  onSubmit={handleSubmit(onSubmit, onError)} className="passengers-form-filling col mt-5 mb-5">
 					<div className="passengers-form-number border-bottom row pt-4 pb-4">
 						<img className="passengers-form-img pl-4 mt-auto" src={iconMinusSircle} alt="..."
 							onClick={props.setActiveFalse} />
@@ -58,7 +81,7 @@ const Form = (props) => {
 								className="col-sm form-control"
 								type="text"
 								placeholder="Мартынюк"
-								{...register('last_name', {required: true, maxLength: 30})}								
+								{...register('last_name', {required: true, maxLength: 30 })}
 							/>
 							{errors.last_name && errors.last_name.type === "required" && <span>*укажите фамилию</span>}
 							{errors.last_name && errors.last_name.type === "maxLength" && <span>*длина превышена</span>}
@@ -90,7 +113,7 @@ const Form = (props) => {
 						<div className="col-lg-2 pt-3 pl-4 pr-4 mr-5">
 							<p>Пол</p>
 							<label className="switch">
-								<input type="checkbox" {...register('is_adugenderlt', {required: true})} />
+								<input type="checkbox" {...register('gender')} />
 								<span className="slider-checkbox">&nbsp; &nbsp; М &nbsp; &nbsp; &nbsp; &nbsp; Ж</span>
 							</label>
 						</div>
@@ -160,6 +183,8 @@ const Form = (props) => {
 							</div>}
 					</div>
 					<div className="row border-bottom"></div>
+
+					<FormValidationErrors errors={errors}/>
 
 					<div className="row justify-content-end">
 						<button
