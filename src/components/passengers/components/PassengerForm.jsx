@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 
 const Form = (props) => {
 
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit, formState: { errors }} = useForm();
 
 	const onSubmit = (data) => {
 		let newData = { ...data };
@@ -46,7 +46,7 @@ const Form = (props) => {
 					</div>
 
 					<div className="col-lg-4 pl-4 pt-4 pr-4">
-						<select className="form-control" name="is_adult" ref={register}>
+						<select className="form-control" {...register('is_adult', {required: true})}>
 							<option value={true}>Взрослый</option>
 							<option value={false}>Десткий</option>
 						</select>
@@ -58,8 +58,8 @@ const Form = (props) => {
 								className="col-sm form-control"
 								type="text"
 								placeholder="Мартынюк"
-								name="last_name"
-								ref={register({ required: true, maxLength: 30 })} />
+								{...register('last_name', {required: true, maxLength: 30})}								
+							/>
 							{errors.last_name && errors.last_name.type === "required" && <span>*укажите фамилию</span>}
 							{errors.last_name && errors.last_name.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
@@ -69,8 +69,8 @@ const Form = (props) => {
 								className="col-sm form-control"
 								type="text"
 								placeholder="Ирина"
-								name="first_name"
-								ref={register({ required: true, maxLength: 30 })} />
+								{...register('first_name', {required: true, maxLength: 30})}
+							/>
 							{errors.first_name && errors.first_name.type === "required" && <span>*укажите имя</span>}
 							{errors.first_name && errors.first_name.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
@@ -80,8 +80,8 @@ const Form = (props) => {
 								className="col-sm form-control"
 								type="text"
 								placeholder="Эдуардовна"
-								name="patronymic"
-								ref={register({ required: true, maxLength: 30 })} />
+								{...register('patronymic', {required: true, maxLength: 30})}	
+							/>
 							{errors.patronymic && errors.patronymic.type === "required" && <span>*укажите отчество</span>}
 							{errors.patronymic && errors.patronymic.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
@@ -90,7 +90,7 @@ const Form = (props) => {
 						<div className="col-lg-2 pt-3 pl-4 pr-4 mr-5">
 							<p>Пол</p>
 							<label className="switch">
-								<input type="checkbox" name="gender" ref={register} />
+								<input type="checkbox" {...register('is_adugenderlt', {required: true})} />
 								<span className="slider-checkbox">&nbsp; &nbsp; М &nbsp; &nbsp; &nbsp; &nbsp; Ж</span>
 							</label>
 						</div>
@@ -100,8 +100,8 @@ const Form = (props) => {
 								className="col-sm form-control"
 								type="text"
 								placeholder="дд/мм/гг"
-								name="birthday"
-								ref={register({ required: true, maxLength: 30 })} />
+								{...register('birthday', {required: true, maxLength: 30})}
+							 />
 							{errors.birthday && errors.birthday.type === "required" && <span>*укажите дату</span>}
 							{errors.birthday && errors.birthday.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
@@ -116,7 +116,7 @@ const Form = (props) => {
 							<select
 								className="form-control"
 								name="document_type"
-								ref={register}
+								{...register('document_type', {required: true})}
 								onChange={e => documents(e.currentTarget.value)}>
 								<option value="Паспорт">Паспорт РФ</option>
 								<option value="Свидетельство">Свидетельство о рождении</option>
@@ -130,8 +130,8 @@ const Form = (props) => {
 										className="col-sm form-control"
 										type="text"
 										placeholder="_ _ _ _"
-										name="serial"
-										ref={register({ required: true, maxLength: 30 })} />
+										{...register('serial', {required: true, maxLength: 4})}
+									/>
 									{errors.serial && errors.serial.type === "required" && <span>*укажите серию</span>}
 									{errors.serial && errors.serial.type === "maxLength" && <span>*длина превышена</span>}
 								</div>
@@ -140,8 +140,8 @@ const Form = (props) => {
 									<input className="col-sm form-control"
 										type="text"
 										placeholder="_ _ _ _ _ _"
-										name="number"
-										ref={register({ required: true, maxLength: 30 })} />
+										{...register('number', {required: true, maxLength: 6})}
+									/>
 									{errors.number && errors.number.type === "required" && <span>*укажите номер</span>}
 									{errors.number && errors.number.type === "maxLength" && <span>*длина превышена</span>}
 								</div>
@@ -153,8 +153,8 @@ const Form = (props) => {
 									className="col-sm form-control"
 									type="text"
 									placeholder="_ _ _  _ _  _ _ _ _ _"
-									name="document_data"
-									ref={register({ required: true, maxLength: 30 })} />
+									{...register('document_data', {required: true, maxLength: 10})}
+								/>
 								{errors.document_data && errors.document_data.type === "required" && <span>*укажите номер</span>}
 								{errors.document_data && errors.document_data.type === "maxLength" && <span>*длина превышена</span>}
 							</div>}
