@@ -120,7 +120,7 @@ class PaySectionSearch extends React.Component {
 									</div>
 									<p className="ml-2 text-black-50">Онлайн</p>
 								</div>
-								<ul className="col-lg-7 flex-wrap list-group list-group-horizontal justify-content-between ml-3">
+								<ul className="flex-wrap list-group list-group-horizontal justify-content-between ml-3">
 									<li className="col-lg-4 list-group-item border-0 font-weight-bold">Банковской картой</li>
 									<li className="list-group-item border-0 font-weight-bold">PayPal</li>
 									<li className="list-group-item border-0 font-weight-bold">Visa QIWI Wallet</li>

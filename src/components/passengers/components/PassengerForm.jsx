@@ -1,6 +1,7 @@
 import React from 'react';
 import iconMinusSircle from '../../../images/icon_minus_sircle.png';
 import iconCloseX from '../../../images/icon_close_x.png';
+import iconCloseXCircle from '../../../images/icon_close_x_sircle.png'
 import iconPlusSircle from '../../../images/icon_plus_sircle.png';
 
 import { useForm } from 'react-hook-form';
@@ -11,15 +12,22 @@ const FormValidationErrors = (props) => {
 	console.log(errors)
 	return (
 		<>
-		<div className="border-bottom row pt-4 pb-4 passenger-form-validate-error-block">
-		<img className="passengers-form-img pl-4 mt-auto" src={iconMinusSircle} alt="..."
-			 />
+			<div className="border-bottom row pt-4 pb-4 passenger-form-validate-error-block">
+			<img className="passengers-form-img pl-4 mt-auto" src={iconCloseXCircle} alt="..."
+		/>
 
 		<h5 className="ml-3"> 
-		    {errors.last_name && errors.last_name.type === "required" && <span>Укажите фамилию</span>}
-			{errors.first_name && errors.first_name.type === "required" && <span>Укажите имя</span>}
+		    {errors.last_name && errors.last_name.type === "required" && <span>Укажите фамилию<br></br></span>}
+			{errors.first_name && errors.first_name.type === "required" && <span>Укажите имя<br></br></span>}
+			{errors.patronymic && errors.patronymic.type === "required" && <span>Укажите отчество<br></br></span>}
+			{errors.birthday && errors.birthday.type === "required" && <span>Укажите дату рождения<br></br></span>}
+			{errors.serial && errors.serial.type === "required" && <span>Укажите серию паспота<br></br></span>}
+			{errors.number && errors.number.type === "required" && <span>Укажите номер паспота<br></br></span>}
+			{errors.document_data && errors.document_data.type === "required" && <span>Укажите номер свидетельства о рождении<br></br></span>}
+		
+		
+		
 		</h5>
-		<img className="ml-auto mr-5 mt-auto" src={iconCloseX} alt="..." />
 		</div>
 </>
 	)
@@ -83,7 +91,6 @@ const Form = (props) => {
 								placeholder="Мартынюк"
 								{...register('last_name', {required: true, maxLength: 30 })}
 							/>
-							{errors.last_name && errors.last_name.type === "required" && <span>*укажите фамилию</span>}
 							{errors.last_name && errors.last_name.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
 						<div className="col-lg-4 pt-3 pl-4 pr-4 w-100">
@@ -94,7 +101,6 @@ const Form = (props) => {
 								placeholder="Ирина"
 								{...register('first_name', {required: true, maxLength: 30})}
 							/>
-							{errors.first_name && errors.first_name.type === "required" && <span>*укажите имя</span>}
 							{errors.first_name && errors.first_name.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
 						<div className="col-lg-4 pt-3 pl-4 pr-4 w-100">
@@ -105,7 +111,6 @@ const Form = (props) => {
 								placeholder="Эдуардовна"
 								{...register('patronymic', {required: true, maxLength: 30})}	
 							/>
-							{errors.patronymic && errors.patronymic.type === "required" && <span>*укажите отчество</span>}
 							{errors.patronymic && errors.patronymic.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
 					</div>
@@ -114,7 +119,7 @@ const Form = (props) => {
 							<p>Пол</p>
 							<label className="switch">
 								<input type="checkbox" {...register('gender')} />
-								<span className="slider-checkbox">&nbsp; &nbsp; М &nbsp; &nbsp; &nbsp; &nbsp; Ж</span>
+								<span className="slider-checkbox">&nbsp; М &nbsp; &nbsp; &nbsp; Ж</span>
 							</label>
 						</div>
 						<div className="col-lg-4 pt-3 pl-4 pr-4">
@@ -125,13 +130,12 @@ const Form = (props) => {
 								placeholder="дд/мм/гг"
 								{...register('birthday', {required: true, maxLength: 30})}
 							 />
-							{errors.birthday && errors.birthday.type === "required" && <span>*укажите дату</span>}
 							{errors.birthday && errors.birthday.type === "maxLength" && <span>*длина превышена</span>}
 						</div>
 					</div>
-					<div className="row mt-3 border-bottom">
-						<input className="ml-5 mt-1" type="checkbox" />
-						<p className="ml-2">ограниченная подвижность</p>
+					<div className="row border-bottom">
+						<input className="ml-5" type="checkbox" />
+						<p className="ml-3 mt-3">ограниченная подвижность</p>
 					</div>
 					<div className="d-flex flex-wrap">
 						<div className="col-lg-4 ml-2 pt-3 pr-4">
@@ -155,7 +159,6 @@ const Form = (props) => {
 										placeholder="_ _ _ _"
 										{...register('serial', {required: true, maxLength: 4})}
 									/>
-									{errors.serial && errors.serial.type === "required" && <span>*укажите серию</span>}
 									{errors.serial && errors.serial.type === "maxLength" && <span>*длина превышена</span>}
 								</div>
 								<div className="col-lg-3 pt-3 pl-4 pb-4">
@@ -165,7 +168,6 @@ const Form = (props) => {
 										placeholder="_ _ _ _ _ _"
 										{...register('number', {required: true, maxLength: 6})}
 									/>
-									{errors.number && errors.number.type === "required" && <span>*укажите номер</span>}
 									{errors.number && errors.number.type === "maxLength" && <span>*длина превышена</span>}
 								</div>
 							</>
@@ -178,7 +180,6 @@ const Form = (props) => {
 									placeholder="_ _ _  _ _  _ _ _ _ _"
 									{...register('document_data', {required: true, maxLength: 10})}
 								/>
-								{errors.document_data && errors.document_data.type === "required" && <span>*укажите номер</span>}
 								{errors.document_data && errors.document_data.type === "maxLength" && <span>*длина превышена</span>}
 							</div>}
 					</div>
