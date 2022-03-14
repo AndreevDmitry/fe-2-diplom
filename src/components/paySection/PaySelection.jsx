@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import SectionSearchTicketsHeader from '../shared/HeaderSearchForm';
 import PaySectionSearch from './components/PaySectionSearch';
 
-class PaySelection extends Component {
-	render() {
-		return (
-			<div>
-				<SectionSearchTicketsHeader />
-				<PaySectionSearch />
-			</div>
-		);
-	};
+function PaySelection() {
+	return (
+		<div>
+			<SectionSearchTicketsHeader />
+			<PaySectionSearch />
+		</div>
+	);
 };
 
 export default PaySelection;
