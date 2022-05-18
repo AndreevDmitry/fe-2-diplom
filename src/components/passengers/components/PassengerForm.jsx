@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import iconMinusSircle from '../../../images/icon_minus_sircle.png';
 import iconCloseX from '../../../images/icon_close_x.png';
 import iconCloseXCircle from '../../../images/icon_close_x_sircle.png'
@@ -209,41 +209,40 @@ const Form = (props) => {
 	);
 };
 
-class PassengerForm extends React.Component {
+function PassengerForm(props) {
+	const [active, setActive] = useState(props.activeForm);
+	const [documents, setDocuments] = useState(true);
 
-	state = {
-		active: this.props.activeForm,
-		documents: true
+	const handleActiveInput = (active) => setActive(active);
+
+	const handleDocumentsInput = (documents) => setDocuments(documents);
+
+	const setActiveTrue = () => {
+		setActive(true);
+		props.setDisableForm();
 	};
 
-	setActiveTrue = () => {
-		this.setState({ active: true });
-		this.props.setDisableForm();
-	};
+	const setActiveFalse = () => setActive(false);
 
-	setActiveFalse = () => this.setState({ active: false });
+	const setDocumentTrue = () => setDocuments(true);
 
-	setDocumentTrue = () => this.setState({ documents: true });
+	const setDocumentFalse = () => setDocuments(false);
 
-	setDocumentFalse = () => this.setState({ documents: false });
+	const setData = (data, number) => props.setPersonInfo(data, number);
 
-	setData = (data, number) => this.props.setPersonInfo(data, number);
-
-	render() {
-		return (
-			<Form
-				disableForm={this.props.disableForm}
-				passengerNumber={this.props.passengerNumber}
-				setActiveButton={this.props.setActiveButton}
-				setData={this.setData}
-				active={this.state.active}
-				documents={this.state.documents}
-				setActiveTrue={this.setActiveTrue}
-				setActiveFalse={this.setActiveFalse}
-				setDocumentTrue={this.setDocumentTrue}
-				setDocumentFalse={this.setDocumentFalse} />
-		);
-	}
+	return (
+		<Form
+			disableForm={props.disableForm}
+			passengerNumber={props.passengerNumber}
+			setActiveButton={props.setActiveButton}
+			setData={setData}
+			active={handleActiveInput}
+			documents={handleDocumentsInput}
+			setActiveTrue={setActiveTrue}
+			setActiveFalse={setActiveFalse}
+			setDocumentTrue={setDocumentTrue}
+			setDocumentFalse={setDocumentFalse} />
+	);
 }
 
 export default PassengerForm;
