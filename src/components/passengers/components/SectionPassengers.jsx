@@ -34,19 +34,7 @@ class SectionPassengers extends React.Component {
 		this.props.setPersonInfo(this.state.personInfo);
 	};
 
-
 	render() {
-
-		const passengersFormJSX = this.props.seatsNumbers.map((el, i) => {
-			return <PassengerForm
-				key={el}
-				passengerNumber={i + 1}
-				setPersonInfo={this.setPersonInfo}
-				setActiveButton={this.setActiveButton}
-				activeForm={i === 0}
-				disableForm={this.state.disableForm}
-				setDisableForm={this.setDisableForm} />
-		});
 
 		return (
 			<div>
@@ -62,7 +50,16 @@ class SectionPassengers extends React.Component {
 
 					<div className="col mb-5">
 
-						{passengersFormJSX}
+						{this.props.seatsNumbers.map((el, i) => {
+							return <PassengerForm
+								key={el}
+								passengerNumber={i + 1}
+								setPersonInfo={this.setPersonInfo}
+								setActiveButton={this.setActiveButton}
+								activeForm={i === 0}
+								disableForm={this.state.disableForm}
+								setDisableForm={this.setDisableForm} />
+						})}
 
 						<NavLink className="box-add-passenger mt-5 mb-5" to="/seat_selection">
 							<div className="passengers-form-filling col">

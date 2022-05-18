@@ -31,9 +31,7 @@ class ReactCompoundSliderSmall extends React.Component {
   };
 
   render() {
-    const {
-      state: { values }
-    } = this;
+    const values = this.state.values;
 
     return (
       <div style={{ height: 10, width: '100%' }}>

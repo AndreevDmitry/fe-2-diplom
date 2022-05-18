@@ -103,9 +103,6 @@ class SearchTicketsJSX extends React.Component {
 				onClick={this.setButtonOffset}>{i}</button>);
 		}
 
-		const resultSearchTicketsJSX = this.props.ticketsArray ? this.props.ticketsArray.map((el, idx) =>
-			<ResultSearchTickets key={idx} state={el} setTrainId={this.setTrainId} />) : [];
-
 		return (
 			<div className="tickets-search-result col pt-5 pb-5">
 				<div className="d-flex flex-wrap">
@@ -136,7 +133,8 @@ class SearchTicketsJSX extends React.Component {
 					</div>
 				</div>
 
-				{resultSearchTicketsJSX}
+				{this.props.ticketsArray ? this.props.ticketsArray.map((el, idx) =>
+					<ResultSearchTickets key={idx} state={el} setTrainId={this.setTrainId} />) : []}
 
 				<div className="d-flex justify-content-end mt-5">
 					<button className="page-search-select-number"
