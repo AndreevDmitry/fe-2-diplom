@@ -62,12 +62,10 @@ function MainPageHeaderAndForm(props) {
 	};
 
 	const handleWhereFromDateInput = (event) => {
-		console.log(event.target.value);
 		setWhereFromDate(event.target.value);
 	};
 
 	const hanldeWhereToDateInput = (event) => {
-		console.log(event.target.value);
 		setWhereToDate(event.target.value);
 	};
 
@@ -76,8 +74,6 @@ function MainPageHeaderAndForm(props) {
 		props.setDataForm(setForm);
 		props.history.push('/search_tickets');
 	};
-
-	console.log({dataCities})
 
 	const disabledButton = () => (
 		whereFromCity === '' || 
