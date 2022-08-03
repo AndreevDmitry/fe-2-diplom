@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { connect } from 'react-redux';
 import { setDataFormAC } from '../../redux/action';
@@ -7,144 +7,138 @@ import { searchMainAPI } from '../../redux/searchMain-reducer';
 import { withRouter } from 'react-router';
 import { filterTicketsAndSeatsReducerTC } from '../../redux/filterTicketsAndSeats-reducer';
 
-class HeaderSearchForm extends React.Component {
-	state = {
-		dataCities: [],
-		valueFromCity: this.props.form.whereFromCity,
-		valueToCity: this.props.form.whereToCity,
-		whereFromCity: this.props.form.whereFromCity,
-		whereToCity: this.props.form.whereToCity,
-		whereFromDate: this.props.form.whereFromDate,
-		whereToDate: this.props.form.whereToDate,
-		cityWhereFromId: this.props.form.cityWhereFromId,
-		cityWhereToId: this.props.form.cityWhereToId
+function HeaderSearchForm(props) {
+    const [dataCities, setDataCities] = useState([]);
+	const [valueFromCity, setValueFromCity] = useState(props.form.whereFromCity);
+	const [valueToCity, setValueToCity] = useState(props.form.whereToCity);
+	const [whereFromCity, setWhereFromCity] = useState(props.form.whereFromCity);
+	const [whereFromDate, setWhereFromDate] = useState(props.form.whereFromDate);
+	const [whereToCity, setWhereToCity] = useState(props.form.whereToCity);
+	const [whereToDate, setWhereToDate] = useState(props.form.whereToDate);
+	const [cityWhereFromId, setCityWhereFromId] = useState(props.form.cityWhereFromId);
+	const [cityWhereToId, setCityWhereToId] = useState(props.form.cityWhereToId);
+
+
+	useEffect(() => {
+		props.searchRoutes(valueFromCity).then(data => {
+			data.data.error ? setDataCities([]) : setDataCities(data.data)
+		});		
+	}, [valueFromCity]);
+
+	useEffect(() => {
+		props.searchRoutes(valueToCity).then(data => {
+			data.data.error ? setDataCities([]) : setDataCities(data.data)
+		});		
+	}, [valueToCity]);	
+
+	const handleValueFromCityInput = (value) => {
+    	setValueFromCity(value);
 	};
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.valueFromCity !== this.state.valueFromCity) {
-			this.props.searchRoutes(this.state.valueFromCity)
-				.then(data => this.setState(data.data.error ? { dataCities: [], valueFromCity: data.data.error } : { dataCities: data.data }));
-		}
-
-		if (prevState.valueToCity !== this.state.valueToCity) {
-			this.props.searchRoutes(this.state.valueToCity)
-				.then(data => this.setState(data.data.error ? { dataCities: [], valueToCity: data.data.error } : { dataCities: data.data }));
-		}
+	const handleValueToCityInput = (value) => {
+		setValueToCity(value);
 	};
 
-	setFromValue = (event) => {
-		this.setState({ valueFromCity: event });
-	};
-
-	setToValue = (event) => {
-		this.setState({ valueToCity: event });
-	};
-
-	setWhereFromCity = (event) => {
-		if (event.length !== 0) {
-			const city = this.state.dataCities.find(el => el.name === event[0]);
-
-			this.setState({ whereFromCity: event[0], cityWhereFromId: city._id, dataCities: [] });
-		}
-	};
-
-	setWhereToCity = (event) => {
-		if (event.length !== 0) {
-			const city = this.state.dataCities.find(el => el.name === event[0]);
-
-			this.setState({ whereToCity: event[0], cityWhereToId: city._id, dataCities: [] });
+	const handleWhereFromCityInput = (values) => {
+		if (values.length !== 0) {
+			const city = dataCities.find(el => el.name === values[0]);
+			setWhereFromCity(city.name);
+			setCityWhereFromId(city._id);
 		}
 	};
 
-	setWhereFromDate = (event) => {
-		this.setState({ whereFromDate: event.currentTarget.value });
+	const handleWhereToCityInput = (values) => {
+		if (values.length !== 0) {
+			const city = dataCities.find(el => el.name === values[0]);
+			setWhereToCity(city.name);
+			setCityWhereToId(city._id);
+		}
 	};
 
-	setWhereToDate = (event) => {
-		this.setState({ whereToDate: event.currentTarget.value });
+	const handleWhereFromDateInput = (event) => {
+		setWhereFromDate(event.target.value);
 	};
 
-	saveMainState = () => {
-		const { whereFromCity, whereToCity, whereFromDate, whereToDate, cityWhereFromId, cityWhereToId } = this.state;
+	const hanldeWhereToDateInput = (event) => {
+		setWhereToDate(event.target.value);
+	};
+
+	const saveMainState = () => {
 		const setForm = { whereFromCity, whereToCity, whereFromDate, whereToDate, cityWhereFromId, cityWhereToId };
-
-		this.props.setDataForm(setForm);
-
+		props.setDataForm(setForm);
 		window.scrollTo(0, 700);
-
-		this.props.setSeatsAndTicketsEvent('actualPage', this.props.match.url);
-
-		this.props.history.push('/search_tickets');
+		props.setSeatsAndTicketsEvent('actualPage', props.match.url);
+		props.history.push('/search_tickets');
 	};
 
-	disabledButton = () =>
-		this.state.whereFromCity === '' ||
-		this.state.whereToCity === '' ||
-		this.state.whereFromDate === '' ||
-		this.state.whereToDate === '' ||
-		this.state.cityWhereFromId === '' ||
-		this.state.cityWhereToId === '';
+	const disabledButton = () => (
+		whereFromCity === '' ||
+		whereToCity === '' ||
+		whereFromDate === '' ||
+		whereToDate === '' ||
+		cityWhereFromId === '' ||
+		cityWhereToId === ''
+	);
 
-	render() {
-		const options = this.state.dataCities.map(el => el.name);
 
-		return (
-			<div className="header-section-three-page">
-				<div className="text-white animated zoomInDown">
-					<div className="container section-header-order pb-3">
-						<div className="d-flex">
-							<form className="form mt-3 w-100" action="input">
-								<p className="ml-3">Направление</p>
-								<div className="d-flex flex-wrap form-group">
-									<Typeahead value={this.state.valueFromCity}
-										placeholder={this.state.valueFromCity ? this.state.valueFromCity : "откуда"}
-										id="whereFromCity"
-										options={options}
-										onInputChange={this.setFromValue}
-										onChange={this.setWhereFromCity}
-										className="flex-grow-1 m-2"
-									/>
-									<i className="glyphicon glyphicon-user" />
-									<Typeahead value={this.state.valueToCity}
-										placeholder={this.state.valueToCity ? this.state.valueToCity : "куда"}
-										id="whereToCity"
-										options={options}
-										onInputChange={this.setToValue}
-										onChange={this.setWhereToCity}
-										className="flex-grow-1 m-2"
-									/>
-								</div>
-							</form>
-							<form className="form mt-3 w-100" action="input">
-								<p className="ml-3">Дата</p>
-								<div className="d-flex flex-wrap form-group">
-									<input className="col form-control m-2"
-										key="dateFrom"
-										type="date"
-										onChange={this.setWhereFromDate}
-										value={this.state.whereFromDate}
-									/>
-									<input className="col form-control m-2"
-										key="dateTo"
-										type="date"
-										onChange={this.setWhereToDate}
-										value={this.state.whereToDate}
-									/>
-								</div>
-							</form>
-						</div>
-						<div className="text-right">
-							<button
-								className="btn btn-outline-warning col-lg-3 m-1"
-								type="button"
-								disabled={this.disabledButton()}
-								onClick={this.saveMainState}>найти билеты</button>
-						</div>
+	const options = dataCities.map(el => el.name);
+
+	return (
+		<div className="header-section-three-page">
+			<div className="text-white animated zoomInDown">
+				<div className="container section-header-order pb-3">
+					<div className="d-flex">
+						<form className="form mt-3 w-100" action="input">
+							<p className="ml-3">Направление</p>
+							<div className="d-flex flex-wrap form-group">
+								<Typeahead value={valueFromCity}
+									placeholder={valueFromCity ? valueFromCity : "откуда"}
+									id="whereFromCity"
+									options={options}
+									onInputChange={handleValueFromCityInput}
+									onChange={handleWhereFromCityInput}
+									className="flex-grow-1 m-2"
+								/>
+								<i className="glyphicon glyphicon-user" />
+								<Typeahead value={valueToCity}
+									placeholder={valueToCity ? valueToCity : "куда"}
+									id="whereToCity"
+									options={options}
+									onInputChange={handleValueToCityInput}
+									onChange={handleWhereToCityInput}
+									className="flex-grow-1 m-2"
+								/>
+							</div>
+						</form>
+						<form className="form mt-3 w-100" action="input">
+							<p className="ml-3">Дата</p>
+							<div className="d-flex flex-wrap form-group">
+								<input className="col form-control m-2"
+									key="dateFrom"
+									type="date"
+									onChange={handleWhereFromDateInput}
+									value={whereFromDate}
+								/>
+								<input className="col form-control m-2"
+									key="dateTo"
+									type="date"
+									onChange={hanldeWhereToDateInput}
+									value={whereToDate}
+								/>
+							</div>
+						</form>
+					</div>
+					<div className="text-right">
+						<button
+							className="btn btn-outline-warning col-lg-3 m-1"
+							type="button"
+							disabled={disabledButton()}
+							onClick={saveMainState}>найти билеты</button>
 					</div>
 				</div>
 			</div>
-		);
-	};
+		</div>
+	);
 };
 
 const mapStateToProps = (state) => {

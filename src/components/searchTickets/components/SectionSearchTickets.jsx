@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState}  from 'react';
 import progressStateSelect from '../../../images/progress_state_select.png';
 import progressStateDefault from '../../../images/progress_state_default.png';
 import ProgressLineCost from '../../shared/ProgressLineCost';
@@ -12,46 +12,40 @@ import { filterTicketsAndSeatsReducerTC } from './../../../redux/filterTicketsAn
 import { withRouter } from 'react-router';
 
 
-class SectionSearchTickets extends React.Component {
+function SectionSearchTickets(props) {
+	const [preloader, setPreloader] = useState(props.preloader);
 
-	state = {
-		preloader: this.props.preloader
-	}
+	useEffect(() => {
+		props.setSeatsAndTickets('actualPage', props.match.url);	
+	}, []);
 
-	componentDidMount() {
-		this.props.setSeatsAndTickets('actualPage', this.props.match.url);
-	};
+	useEffect(() => {
+		setPreloader(props.preloader);
+	}, [preloader]);
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.preloader !== this.props.preloader) {
-			this.setState({ preloader: this.props.preloader });
-		}
-	};
 
-	render() {
-		return (
-			<div className="text-white tickets-search-window">
+	return (
+		<div className="text-white tickets-search-window">
 
-				<ProgressLineCost tickets={progressStateSelect}
-					passengers={progressStateDefault}
-					passengersClass=""
-					payment={progressStateDefault}
-					paymentClass=""
-					checkClass="" />
+			<ProgressLineCost tickets={progressStateSelect}
+				passengers={progressStateDefault}
+				passengersClass=""
+				payment={progressStateDefault}
+				paymentClass=""
+				checkClass="" />
 
-				{this.state.preloader ?
-					<div className="preloader d-flex justify-content-center"><p className="preloader-text">ИДЕТ ПОИСК</p><img src={preloderAnimation} alt="" />
-					</div>
-					:
-					<div className="container d-flex flex-wrap">
-						<SideBarSearchTicketsAndSeatSelection />
+			{preloader ?
+				<div className="preloader d-flex justify-content-center"><p className="preloader-text">ИДЕТ ПОИСК</p><img src={preloderAnimation} alt="" />
+				</div>
+				:
+				<div className="container d-flex flex-wrap">
+					<SideBarSearchTicketsAndSeatSelection />
 
-						<SearchTicketsJSX />
-					</div>
-				}
-			</div>
-		);
-	}
+					<SearchTicketsJSX />
+				</div>
+			}
+		</div>
+	);
 }
 
 const mapStateToProps = (state) => {

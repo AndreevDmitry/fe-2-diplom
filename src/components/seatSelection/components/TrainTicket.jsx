@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import choiceTrainIcon from '../../../images/icon_choice_train.png';
 import choiceTimeIcon from '../../../images/icon_choice_time.png';
 import TrainJSX from './TrainJSX';
@@ -13,223 +13,219 @@ import { ucFL } from '../../..';
 import { withRouter } from 'react-router';
 
 
-class TrainTicket extends React.Component {
+function TrainTicket(props) {
+	const [coach_id, setCoachId] = useState('');
+	const [seat_number, setSeatNumber] = useState([]);
+	const [is_child, setChildSeat] = useState(false);
+	const [include_children_seat, setChildWithoutSeat] = useState(false);
+	const [sumSeats, setSumSeats] = useState(0);
+	const [sumTicketsPay, setSumTicketsPay] = useState(0);
+	const [fourthClass, setFourthClass] = useState(false);
+	const [thirdClass, setThirdClass] = useState(false);
+	const [secondClass, setSecondClass] = useState(false);
+	const [firstClass, setFirstClass] = useState(false);
+	const [fourth, setFourth] = useState([]);
+	const [third, setThird] = useState([]);
+	const [second, setSecond] = useState([]);
+	const [first, setFirst] = useState([]);
+	//state = {
+		//coach_id: '',
+		//seat_number: [],
+		//is_child: false,
+		//include_children_seat: false,
+		//sumSeats: 0,
+		//sumTicketsPay: 0,
+		//fourthClass: false,
+		//thirdClass: false,
+		//secondClass: false,
+		//firstClass: false,
+		//fourth: [],
+		//third: [],
+		//second: [],
+		//first: []
+	//}
 
-	state = {
-		coach_id: '',
-		seat_number: [],
-		is_child: false,
-		include_children_seat: false,
-		sumSeats: 0,
-		sumTicketsPay: 0,
-		fourthClass: false,
-		thirdClass: false,
-		secondClass: false,
-		firstClass: false,
-		fourth: [],
-		third: [],
-		second: [],
-		first: []
-	}
-
-	setCoachId = (id) => this.setState({ coach_id: id });
-
-	setSeatNumber = (event) => {
+	const handleSeatNumber = (event) => {
 		const currentNumber = event.currentTarget.innerHTML;
 
-		if (this.state.seat_number.indexOf(currentNumber) > -1) {
-			this.setState({
-				seat_number: this.state.seat_number.filter(el => el !== currentNumber),
-				sumTicketsPay: this.state.sumTicketsPay - this.props.payAdult
-			});
-		} else if (this.state.seat_number.length !== this.state.sumSeats) {
-			this.setState({
-				seat_number: [...this.state.seat_number, currentNumber],
-				sumTicketsPay: (this.state.seat_number.length + 1) * this.props.payAdult
-			});
+		if (seat_number.indexOf(currentNumber) > -1) {
+			setSeatNumber(seat_number.filter(el => el !== currentNumber));
+			setSumTicketsPay(sumTicketsPay - props.payAdult);
+		} else if (seat_number.length !== sumSeats) {
+			setSeatNumber({...seat_number, currentNumber});
+			setSumTicketsPay((seat_number.length + 1) * props.payAdult);
 		}
-		this.props.setPassengersAndPay('seatsNumbers', this.state.seat_number);
+		props.setPassengersAndPay('seatsNumbers', seat_number);
 	};
 
-	setAdultSeats = (value) => {
-		this.setState({ sumSeats: this.state.sumSeats + value });
-		this.props.setPassengersAndPay('ticketsAdult', value);
+	const handleAdultSeats = (value) => {
+		setSumSeats(sumSeats + value);
+		props.setPassengersAndPay('ticketsAdult', value);
 	};
 
-	setChildSeat = (value) => {
-		this.setState({ sumSeats: this.state.sumSeats + value, is_child: value !== 0 });
-		this.props.setPassengersAndPay('ticketsChild', value);
+	const handleChildSeat = (value) => {
+		setSumSeats(sumSeats + value);
+		setChildSeat(value !== 0);
+		props.setPassengersAndPay('ticketsChild', value);
 	};
 
-	setChildWithoutSeat = (value) => {
-		this.props.setPassengersAndPay('ticketsChildWithoutPlace', value);
-		this.setState({ include_children_seat: value !== 0 });
+	const handleChildWithoutSeat = (value) => {
+		props.setPassengersAndPay('ticketsChildWithoutPlace', value);
+		setChildWithoutSeat(value !== 0);
 	};
 
-	resetParamsIfChangeClassTrain = () => {
-
-		this.props.setPassengersAndPay('payAdult', 0);
-		this.props.setPassengersAndPay('payChild', 0);
-		this.props.setPassengersAndPay('ticketsAdult', 0);
-		this.props.setPassengersAndPay('ticketsChild', 0);
-		this.props.setPassengersAndPay('ticketsChildWithoutPlace', 0);
-		this.props.setPassengersAndPay('seatsNumbers', []);
-		this.setCoachId('');
-		this.setState({
-			seat_number: [],
-			is_child: false,
-			include_children_seat: false,
-			sumSeats: 0,
-			sumTicketsPay: 0,
-			first: [],
-			fourthClass: false,
-			thirdClass: false,
-			secondClass: false,
-			firstClass: false
-		});
+	const resetParamsIfChangeClassTrain = () => {
+		props.setPassengersAndPay('payAdult', 0);
+		props.setPassengersAndPay('payChild', 0);
+		props.setPassengersAndPay('ticketsAdult', 0);
+		props.setPassengersAndPay('ticketsChild', 0);
+		props.setPassengersAndPay('ticketsChildWithoutPlace', 0);
+		props.setPassengersAndPay('seatsNumbers', []);
+		setCoachId('');
+		setSeatNumber([]);
+		setChildSeat(false);
+		setChildWithoutSeat(false);
+		setSumSeats(0);
+		setSumTicketsPay(0);
+		setFirst([]);
+		setFourthClass(false);
+		setThirdClass(false);
+		setSecondClass(false);
+		setFirstClass(false);
 	};
 
-	setFourthClass = () => {
-		this.props.choiceSeatsArray.map(el => {
-			if (el.coach.class_type === 'fourth' && this.state.sumSeats !== 0) {
-				this.props.setPassengersAndPay('payAdult', el.coach.top_price);
-				this.props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
-				this.setCoachId(el.coach._id);
-				this.setState({
-					fourth: el,
-					fourthClass: true,
-					thirdClass: false,
-					secondClass: false,
-					firstClass: false
-				});
+	const handleFourthClass = () => {
+		props.choiceSeatsArray.map(el => {
+			if (el.coach.class_type === 'fourth' && sumSeats !== 0) {
+				props.setPassengersAndPay('payAdult', el.coach.top_price);
+				props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
+				setCoachId(el.coach._id);
+				setFourth(el);
+				setFourthClass(true);
+				setThirdClass(false);
+				setSecondClass(false);
+				setFirstClass(false);
 			}
 
-			if (this.state.fourthClass || this.state.thirdClass || this.state.secondClass || this.state.firstClass) {
-				this.resetParamsIfChangeClassTrain();
+			if (fourthClass || thirdClass || secondClass || firstClass) {
+				resetParamsIfChangeClassTrain();
 			}
 			return null;
 		});
 	};
 
-	setThirdClass = () => {
-		this.props.choiceSeatsArray.map(el => {
-			if (el.coach.class_type === 'third' && this.state.sumSeats !== 0) {
-				this.props.setPassengersAndPay('payAdult', el.coach.top_price);
-				this.props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
-				this.setCoachId(el.coach._id);
-				this.setState({
-					third: el,
-					fourthClass: false,
-					thirdClass: true,
-					secondClass: false,
-					firstClass: false
-				});
+	const handleThirdClass = () => {
+		props.choiceSeatsArray.map(el => {
+			if (el.coach.class_type === 'third' && sumSeats !== 0) {
+				props.setPassengersAndPay('payAdult', el.coach.top_price);
+				props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
+				setCoachId(el.coach._id);
+				setThird(el);
+				setFourthClass(false);
+				setThirdClass(true);
+				setSecondClass(false);
+				setFirstClass(false);
+
 			}
 
-			if (this.state.fourthClass || this.state.thirdClass || this.state.secondClass || this.state.firstClass) {
-				this.resetParamsIfChangeClassTrain();
-			}
-			return null;
-		});
-	};
-
-	setSecondClass = () => {
-		this.props.choiceSeatsArray.map(el => {
-			if (el.coach.class_type === 'second' && this.state.sumSeats !== 0) {
-				this.props.setPassengersAndPay('payAdult', el.coach.top_price);
-				this.props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
-				this.setCoachId(el.coach._id);
-				this.setState({
-					second: el,
-					fourthClass: false,
-					thirdClass: false,
-					secondClass: true,
-					firstClass: false
-				});
-			}
-
-			if (this.state.fourthClass || this.state.thirdClass || this.state.secondClass || this.state.firstClass) {
-				this.resetParamsIfChangeClassTrain();
+			if (fourthClass || thirdClass || secondClass || firstClass) {
+				resetParamsIfChangeClassTrain();
 			}
 			return null;
 		});
 	};
 
-	setFirstClass = () => {
-		this.props.choiceSeatsArray.map(el => {
-			if (el.coach.class_type === 'first' && this.state.sumSeats !== 0) {
-				this.props.setPassengersAndPay('payAdult', el.coach.top_price);
-				this.props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
-				this.setCoachId(el.coach._id);
-				this.setState({
-					first: el,
-					fourthClass: false,
-					thirdClass: false,
-					secondClass: false,
-					firstClass: true
-				});
+	const handleSecondClass = () => {
+		props.choiceSeatsArray.map(el => {
+			if (el.coach.class_type === 'second' && sumSeats !== 0) {
+				props.setPassengersAndPay('payAdult', el.coach.top_price);
+				props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
+				setCoachId(el.coach._id);				
+				setSecond(el);
+				setFourthClass(false);
+				setThirdClass(false);
+				setSecondClass(true);
+				setFirstClass(false);
 			}
 
-			if (this.state.fourthClass || this.state.thirdClass || this.state.secondClass || this.state.firstClass) {
-				this.resetParamsIfChangeClassTrain();
+			if (fourthClass || thirdClass || secondClass || firstClass) {
+				resetParamsIfChangeClassTrain();
 			}
 			return null;
 		});
 	};
 
-	render() {
+	const handleFirstClass = () => {
+		props.choiceSeatsArray.map(el => {
+			if (el.coach.class_type === 'first' && sumSeats !== 0) {
+				props.setPassengersAndPay('payAdult', el.coach.top_price);
+				props.setPassengersAndPay('payChild', Math.ceil(el.coach.top_price / 2));
+				setCoachId(el.coach._id);
+				setFirst(el);
+				setFourthClass(false);
+				setThirdClass(false);
+				setSecondClass(false);
+				setFirstClass(true);
+			}
 
-		const getHours = (msc) => new Date(msc).getHours();
-		const getMinutes = (msc) => (new Date(msc).getMinutes() < 10 ? '0' : '') + new Date(msc).getMinutes();
+			if (fourthClass || thirdClass || secondClass || firstClass) {
+				resetParamsIfChangeClassTrain();
+			}
+			return null;
+		});
+	};
 
-		if (this.state.seat_number.length === this.state.sumSeats) {
-			this.props.setPassengersAndPay('seatsNumbers', this.state.seat_number);
+	const getHours = (msc) => new Date(msc).getHours();
+	const getMinutes = (msc) => (new Date(msc).getMinutes() < 10 ? '0' : '') + new Date(msc).getMinutes();
 
-			this.props.setRouteTrainSeat(
-				this.props.trainId,
-				this.state.coach_id,
-				this.state.seat_number,
-				this.state.is_child,
-				this.state.include_children_seat
-			);
+	if (seat_number.length === sumSeats) {
+		props.setPassengersAndPay('seatsNumbers', seat_number);
 
-			this.props.setActiveButton(false);
-		} else {
-			this.props.setActiveButton(true);
-		}
+		props.setRouteTrainSeat(
+			props.trainId,
+			coach_id,
+			seat_number,
+			is_child,
+			include_children_seat
+		);
+
+		props.setActiveButton(false);
+	} else {
+		props.setActiveButton(true);
+	}
 
 
 		return (
 			<div className="choice-of-place-there mb-3">
-				{this.props.trainButton}
+				{props.trainButton}
 				<div className="choice-ticket-train-there d-flex flex-wrap mt-4 pt-3 justify-content-between">
 					<div className="d-flex">
 						<img className="align-self-center ml-5 mr-5" src={choiceTrainIcon} alt="..." />
 						<ul className="list-unstyled">
-							<li className="font-weight-bold">{this.props.trainName}</li>
+							<li className="font-weight-bold">{props.trainName}</li>
 							<li>Адлер</li>
-							<li>{ucFL(this.props.cityNameDeparture)}</li>
-							<li>{ucFL(this.props.cityNameArrival)}</li>
+							<li>{ucFL(props.cityNameDeparture)}</li>
+							<li>{ucFL(props.cityNameArrival)}</li>
 						</ul>
 					</div>
 					<div className="d-flex">
 						<ul className="list-unstyled align-self-center">
-							<li className="font-weight-bold">{getHours(this.props.dateTime)}:{getMinutes(this.props.dateTime)}</li>
-							<li className="">{ucFL(this.props.cityNameDeparture)}</li>
-							<li className="font-weight-light">{this.props.railwayStationDeparture}</li>
+							<li className="font-weight-bold">{getHours(props.dateTime)}:{getMinutes(props.dateTime)}</li>
+							<li className="">{ucFL(props.cityNameDeparture)}</li>
+							<li className="font-weight-light">{props.railwayStationDeparture}</li>
 						</ul>
-						<img className="col align-self-center" src={this.props.iconSearch} alt="иконка стрелки" />
+						<img className="col align-self-center" src={props.iconSearch} alt="иконка стрелки" />
 						<ul className="list-unstyled align-self-center">
-							<li className="font-weight-bold">{getHours(this.props.arrivalTime)}:{getMinutes(this.props.arrivalTime)}</li>
-							<li className="">{ucFL(this.props.cityNameArrival)}</li>
-							<li className="font-weight-light">{this.props.railwayStationArrival}</li>
+							<li className="font-weight-bold">{getHours(props.arrivalTime)}:{getMinutes(props.arrivalTime)}</li>
+							<li className="">{ucFL(props.cityNameArrival)}</li>
+							<li className="font-weight-light">{props.railwayStationArrival}</li>
 						</ul>
 					</div>
 					<div className="d-flex mr-5">
 						<img className="align-self-center" src={choiceTimeIcon} alt="..." />
 						<ul className="list-unstyled align-self-center mt-2 ml-2">
-							<li className="font-weight-bold">{getHours(this.props.duration)} часа</li>
-							<li className="font-weight-bold">{getMinutes(this.props.duration)} минут</li>
+							<li className="font-weight-bold">{getHours(props.duration)} часа</li>
+							<li className="font-weight-bold">{getMinutes(props.duration)} минут</li>
 						</ul>
 					</div>
 				</div>
@@ -237,7 +233,7 @@ class TrainTicket extends React.Component {
 				<div className="d-flex flex-wrap">
 					<div className="quantity-tickets-check-left col-lg-4">
 						<select className="custom-select mt-4"
-							onChange={(e) => this.setAdultSeats(+e.currentTarget.value)}>
+							onChange={(e) => handleAdultSeats(+e.currentTarget.value)}>
 							<option selected value="0">Взрослых - 0</option>
 							<option value="1">Взрослых - 1</option>
 							<option value="2">Взрослых - 2</option>
@@ -249,7 +245,7 @@ class TrainTicket extends React.Component {
 					</div>
 					<div className="quantity-tickets-check-center col-lg-4">
 						<select className="custom-select mt-4"
-							onChange={(e) => this.setChildSeat(+e.currentTarget.value)}>
+							onChange={(e) => handleChildSeat(+e.currentTarget.value)}>
 							<option selected value="0">Детских - 0</option>
 							<option value="1">Детских - 1</option>
 							<option value="2">Детских - 2</option>
@@ -261,7 +257,7 @@ class TrainTicket extends React.Component {
 					</div>
 					<div className="quantity-tickets-check-right col-lg-4">
 						<select className="custom-select mt-4"
-							onChange={(e) => this.setChildWithoutSeat(+e.currentTarget.value)}>
+							onChange={(e) => handleChildWithoutSeat(+e.currentTarget.value)}>
 							<option selected value="0">Детских «без места» - 0</option>
 							<option value="1">Детских «без места» - 1</option>
 							<option value="2">Детских «без места» - 2</option>
@@ -275,37 +271,36 @@ class TrainTicket extends React.Component {
 				<h5 className="font-weight-bold ml-3">Тип вагона</h5>
 				<div className="choice-type-vagon-button d-flex justify-content-around mt-4 mb-2">
 					<div className="d-flex flex-column justify-content-center"
-						onClick={this.setFourthClass}>
+						onClick={handleFourthClass}>
 						<div className="icon-type-vagon-seat align-self-center"></div>
 						<p className="text-center">Сидячий</p>
 					</div>
 					<div className="d-flex flex-column justify-content-center"
-						onClick={this.setThirdClass}>
+						onClick={handleThirdClass}>
 						<div className="icon-type-vagon-reserved-seat align-self-center"></div>
 						<p className="text-center">Плацкарт</p>
 					</div>
 					<div className="d-flex flex-column justify-content-center"
-						onClick={this.setSecondClass}>
+						onClick={handleSecondClass}>
 						<div className="icon-type-vagon-coupe align-self-center"></div>
 						<p className="text-center">Купе</p>
 					</div>
 					<div className="d-flex flex-column justify-content-center"
-						onClick={this.setFirstClass}>
+						onClick={handleFirstClass}>
 						<div className="icon-type-vagon-luxury align-self-center"></div>
 						<p className="text-center">Люкс</p>
 					</div>
 				</div>
-				{this.state.fourthClass && <TrainJSX
-					train={this.state.fourth} image={train_fourth_class} seatNumber={this.state.seat_number} setSeatNumber={this.setSeatNumber} sumTicketsPay={this.state.sumTicketsPay} />}
-				{this.state.thirdClass && <TrainJSX
-					train={this.state.third} image={train_third_class} seatNumber={this.state.seat_number} setSeatNumber={this.setSeatNumber} sumTicketsPay={this.state.sumTicketsPay} />}
-				{this.state.secondClass && <TrainJSX
-					train={this.state.second} image={train_second_class} seatNumber={this.state.seat_number} setSeatNumber={this.setSeatNumber} sumTicketsPay={this.state.sumTicketsPay} />}
-				{this.state.firstClass && <TrainJSX
-					train={this.state.first} image={train_first_class} seatNumber={this.state.seat_number} setSeatNumber={this.setSeatNumber} sumTicketsPay={this.state.sumTicketsPay} />}
+				{fourthClass && <TrainJSX
+					train={fourth} image={train_fourth_class} seatNumber={seat_number} setSeatNumber={handleSeatNumber} sumTicketsPay={sumTicketsPay} />}
+				{thirdClass && <TrainJSX
+					train={third} image={train_third_class} seatNumber={seat_number} setSeatNumber={handleSeatNumber} sumTicketsPay={sumTicketsPay} />}
+				{secondClass && <TrainJSX
+					train={second} image={train_second_class} seatNumber={seat_number} setSeatNumber={handleSeatNumber} sumTicketsPay={sumTicketsPay} />}
+				{firstClass && <TrainJSX
+					train={first} image={train_first_class} seatNumber={seat_number} setSeatNumber={handleSeatNumber} sumTicketsPay={sumTicketsPay} />}
 			</div>
 		);
-	}
 }
 
 const mapStateToProps = (state) => {
